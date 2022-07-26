@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const registerRouter = require('./routers/register')
 const loginRouter = require('./routers/login')
-const port = 4000
+const port = process.env.port || 4000
 var morgan = require('morgan')
 app.use(morgan('combined'))
 app.use(express.json())
