@@ -7,35 +7,40 @@ async function main() {
 }
 const userSchema = new mongoose.Schema({
           email: String,
-          passWord: String
+          passWord: String,
+          createAt: {
+                    type: Date,
+                    default: Date.now(),
+          }
 }
           , {
                     collection: 'Users'
           }
 );
-const studentSchema = new mongoose.Schema({
-          name: String,
-          age: Number,
-          Users: {
-                    type: String,
-                    ref: "Users",
+module.exports = mongoose.model('Users', userSchema);
+// const studentSchema = new mongoose.Schema({
+//           name: String,
+//           age: Number,
+//           Users: {
+//                     type: String,
+//                     ref: "Users",
 
-          },
-}
-          , {
-                    collection: 'Students'
-          }
-);
-const studentModel = mongoose.model('Students', studentSchema);
-studentModel.find({})
-.populate("Users")
-.then((data) => {
-          console.log(data);
-})
-.catch((err) => {
-                    console.log(err);
-          })
-const userModel = mongoose.model('Users', userSchema);
+//           },
+// }
+//           , {
+//                     collection: 'Students'
+//           }
+// );
+// const studentModel = mongoose.model('Students', studentSchema);
+// studentModel.find({})
+// .populate("Users")
+// .then((data) => {
+//           console.log(data);
+// })
+// .catch((err) => {
+//                     console.log(err);
+//           })
+
 // userModel.find({})
 //           .populate("Students")
 //           .then((data) => {
